@@ -9,6 +9,7 @@ class Tag(models.Model):
     name = models.CharField(max_length=15)
 
 class Article(models.Model):
+    author = models.IntegerField(default = 1)
     title = models.CharField(max_length=50)
     tag = models.ManyToManyField(Tag,blank=True)
     content_markdown = models.TextField()

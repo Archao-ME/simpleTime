@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block extend_css %}
+    <link rel="stylesheet" href="/static/css/entry.css" >
+{% endblock %}
+{% block content_body %}
+
+  <div class="entry_lists container">
+    
+
+    {% for article in articleList %}
+    <div class="article">
+      <div class="article_header">
+          <h1>{{ article.title}}<small class="text-right">{{article.author}}</small></h1>
+      </div>
+
+      <article class="markdown-body">
+        <p>简易django的blog程序 今日开工</p>
+        <h3>计划:</h3>
+        <pre>
+          <code>
+            1.pagedown 为文本编辑器
+          </code>
+        </pre>
+      </article>
+      </div>
+      {% endfor %}
+
+    
+  </div>
+
+{% endblock %}
