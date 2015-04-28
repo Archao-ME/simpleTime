@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block extend_css %}
+    <link rel="stylesheet" href="/static/css/entry.css" >
+    {{ articleForm.media }}
+{% endblock %}
+{% block content_body %}
+
+  <div class="entry_lists container">
+    
+    <div class="article">
+      <div class="article_header">
+          <h1>{{ state }}<small class="text-right">{{article.author}}</small></h1>
+      </div>
+
+      <article class="markdown-body">
+      <form >
+      <div class="form-title">
+      <h2>Title</h2>
+      {{ articleForm.title }}
+      </div>
+      <div class="form-markdown">
+      <h2>Markdown</h2>
+      {{ articleForm.content_markdown }}
+      </div>
+      </form>	
+      </article>
+      </div>
+  </div>
+
+{% endblock %}
