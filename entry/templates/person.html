@@ -13,16 +13,21 @@
       </div>
 
       <article class="markdown-body">
-      <form >
-      <div class="form-title">
-      <h2>Title</h2>
-      {{ articleForm.title }}
-      </div>
-      <div class="form-markdown">
-      <h2>Markdown</h2>
-      {{ articleForm.content_markdown }}
-      </div>
-      </form>	
+
+      	<form action="" method="POST">{% csrf_token %}
+      	<div class="form-title">
+      		<h2>Title {{ articleList}}</h2>
+      		{{ articleForm.title }}
+      	</div>
+      	<div class="form-markdown">
+      		<h2>Markdown</h2>
+      		{{ articleForm.content_markdown }}
+      	</div>
+      	<div class="form-button">
+      		<button class="btn btn-lg btn-primary btn-block" type="submit">提交</button> 
+      	</div>
+      	</form>
+
       </article>
       </div>
   </div>

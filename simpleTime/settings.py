@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'pagedown',
     'entry',
     'markdown',
+    'markdown_deux',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -72,6 +73,31 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'simpleTime.wsgi.application'
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'static'),
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR,'templates'),
+)
+# List of callables that know how to import templates from various sources.
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
 
 
 # Database

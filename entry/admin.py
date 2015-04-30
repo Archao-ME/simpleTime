@@ -11,7 +11,8 @@ class TagAdmin(admin.ModelAdmin):
 
 class ArticleAdmin(admin.ModelAdmin):
     form = ArticleForm
-    fields = ('title','tag','content_markdown','content_markup')
+    fields = ('title','tag','author','content_markdown','content_markup')
+    list_display = ('id','title','author','publish_date')
     def save_model(self, request, obj, form, change):
         obj.content_markup = markdown(obj.content_markdown)
         obj.save()

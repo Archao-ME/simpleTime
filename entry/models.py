@@ -7,13 +7,16 @@ from markdown import markdown
 
 class Tag(models.Model):
     name = models.CharField(max_length=15)
+    def __unicode__(self):
+        return "%s" % (self.name)
 
 class Article(models.Model):
-    author = models.IntegerField(default = 1)
     title = models.CharField(max_length=50)
+    author = models.IntegerField(default = 1)
     tag = models.ManyToManyField(Tag,blank=True)
     content_markdown = models.TextField()
     content_markup = models.TextField(blank=True)
     publish_date = models.DateField(auto_now=True)
     def __unicode__(self):
-        return "%s" % (self.title,)
+
+        return "%s" % (self.title,) 
