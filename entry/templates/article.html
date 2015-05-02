@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+{% block extend_css %}
+    <link rel="stylesheet" href="/static/css/entry.css" >
+
+{% endblock %}
+{% block content_body %}
+
+  <div class="entry_lists container">
+    
+
+    <div class="article">
+      <div class="article_header">
+          <h1>{{ article.title}}<small class="text-right">{{article.author}}</small></h1>
+      </div>
+
+      <article class="markdown-body">
+          {{ article.content_markdown|markdown }}
+      </article>
+      </div>
+  
+  </div>
+
+{% endblock %}
