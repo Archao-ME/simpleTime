@@ -4,7 +4,35 @@
     {{ articleForm.media }}
 {% endblock %}
 {% block content_body %}
+{% if user.is_authenticated %}
 
+  <div class="entry_lists container">
+    
+    <div class="article">
+      <div class="article_header">
+      </div>
+
+      <article class="markdown-body">
+
+        <form action="" method="POST">{% csrf_token %}
+        <div class="form-title">
+          <h2>Title {{ articleList}}</h2>
+          {{ articleForm.title }}
+        </div>
+        <div class="form-markdown">
+          <h2>Markdown</h2>
+          {{ articleForm.content_markdown }}
+        </div>
+        <div class="form-button">
+          <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button> 
+        </div>
+        </form>
+
+      </article>
+      </div>
+  </div>
+
+{%else%}
   <div class="entry_lists container">
     
     <div class="article">
@@ -14,22 +42,12 @@
 
       <article class="markdown-body">
 
-      	<form action="" method="POST">{% csrf_token %}
-      	<div class="form-title">
-      		<h2>Title {{ articleList}}</h2>
-      		{{ articleForm.title }}
-      	</div>
-      	<div class="form-markdown">
-      		<h2>Markdown</h2>
-      		{{ articleForm.content_markdown }}
-      	</div>
-      	<div class="form-button">
-      		<button class="btn btn-lg btn-primary btn-block" type="submit">提交</button> 
-      	</div>
-      	</form>
+          <h2>密码或账号错误</h2>
+          <a href="http://127.0.0.1:8000/entry/login">返回</a>
+   
 
       </article>
       </div>
   </div>
-
+{%endif%}
 {% endblock %}

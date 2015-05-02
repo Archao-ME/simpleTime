@@ -41,4 +41,31 @@ class ArticleFormPerson(forms.ModelForm):
         model = Article
         fields = '__all__'
 
+class LoginForm(forms.Form):  
+    username = forms.CharField(
+        required=True,  
+        label=u"username",
+        error_messages={'required': 'input username'},
+        widget=forms.TextInput(
+            attrs={
+                'placeholder':u"username",
+                'class':'form-control',
+            }
+        ),
+    ) 
+    password = forms.CharField(
+        required=True,
+        label=u"password",
+        error_messages={'required': u'input password'},
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder':u"password",
+                'class':'form-control',
+            }
+        ),
+    )
+    def clean(self):
+        cleaned_data = super(LoginForm, self).clean()
+
+
 
