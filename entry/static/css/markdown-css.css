@@ -1,6 +1,12 @@
+.write{
+	width:100%;
+}
+.article{
+	width: 100%;
+}
+
 .wmd-panel
 {
-
 	min-width: 500px;
 }
 
@@ -12,14 +18,16 @@
 
 .wmd-input 
 { 
-	height: 300px;
-	width: 100%;
+	float: left;
+	width: 50%;
 	background-color: Gainsboro;
 	border: 1px solid DarkGray;
 }
 
 .wmd-preview 
 { 
+	width: 50%;
+	float: left;
 	background-color: #c0e0ff; 
 }
 

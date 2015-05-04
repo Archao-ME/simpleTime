@@ -1,27 +1,27 @@
 {% extends "base.html" %}
 {% block extend_css %}
     <link rel="stylesheet" href="/static/css/entry.css" >
+    <link rel="stylesheet" href="/static/css/flexText.css">
     {{ articleForm.media }}
 {% endblock %}
 {% block content_body %}
 {% if user.is_authenticated %}
 
-  <div class="entry_lists container">
+  <div class="write container">
     
-    <div class="article">
+    <div class="article"> 
       <div class="article_header">
       </div>
 
       <article class="markdown-body">
 
         <form action="" method="POST">{% csrf_token %}
-        <div class="form-title">
-          <h2>Title {{ articleList}}</h2>
-          {{ articleForm.title }}
-        </div>
-        <div class="form-markdown">
-          <h2>Markdown</h2>
+          
+
+        <div class="form-markdown"> 
+          {{ articleForm.title}}
           {{ articleForm.content_markdown }}
+          
         </div>
         <div class="form-button">
           <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button> 
@@ -50,4 +50,12 @@
       </div>
   </div>
 {%endif%}
+{% endblock %}
+{% block js_block %}
+  <script type="text/javascript" src="/static/js/autogrow.js"></script>
+  <script >
+  $(document).ready(function() {
+    $("#id_content_markdown").autoGrow();
+  });
+</script>
 {% endblock %}
