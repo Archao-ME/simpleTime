@@ -78,6 +78,6 @@ class UploadFileForm(forms.ModelForm):
         )
     fileContent = forms.FileField()
     class Meta:
-        model = Article
+        model = UploadFile
         fields = '__all__'
 

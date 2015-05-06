@@ -81,8 +81,8 @@ def upload(request):
         fileForm = forms.UploadFileForm(request.POST,request.FILES)
         if fileForm.is_valid():
             u = UploadFile()
-            u.name = request.FILES['fileContent']
-            u.uploadfile = request.POST['filename']
+            u.fileContent = request.FILES['fileContent']
+            u.filename = request.POST['filename']
             u.save()
             # handle_uploaded_file(request.FILES['fileContent'])
             uploadState = 'ok'

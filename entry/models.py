@@ -24,8 +24,8 @@ class Article(models.Model):
 UPLOAD_TO='./upload/%Y%m/%d'
 
 class UploadFile(models.Model):
-    name=models.CharField(max_length=50)
-    uploadfile=models.FileField(upload_to='./upload/')
+    filename=models.CharField(max_length=50)
+    fileContent=models.FileField(upload_to='./upload/')
     
     def __unicode__(self):
-        return "%s" % (self.name)
+        return "%s" % (self.filename)
