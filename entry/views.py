@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from models import Article
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from models import Article
+from models import Article,UploadFile
 from django import forms
 from django.core.context_processors import csrf
 import forms
@@ -65,6 +65,7 @@ def login(request):
                 return render_to_response('person.html',{'login_state':'0'},context_instance=RequestContext(request))
         return HttpResponseRedirect('/')
 
+
 def logoutView(request):
     if request.user.is_authenticated():
         logout(request)
@@ -74,3 +75,34 @@ def logoutView(request):
     
     # Redirect to a success page.
     
+def upload(request):
+    uploadState = ''
+    if request.method == 'POST':
+        fileForm = forms.UploadFileForm(request.POST,request.FILES)
+        if fileForm.is_valid():
+            u = UploadFile()
+            u.name = request.FILES['fileContent']
+            u.uploadfile = request.POST['filename']
+            u.save()
+            # handle_uploaded_file(request.FILES['fileContent'])
+            uploadState = 'ok'
+            return HttpResponseRedirect('/entry/')
+        else :
+            uploadState = 'error'
+            return render_to_response('upload.html',{'uploadState':uploadState,'fileForm':fileForm},context_instance=RequestContext(request))
+
+    else :
+        fileForm = forms.UploadFileForm()
+
+    return render_to_response('upload.html',{'uploadState':uploadState,'fileForm':fileForm},context_instance=RequestContext(request))
+
+def handle_uploaded_file(f):
+    upload_path = 'upload/files/' + f.name
+
+    with open(upload_path,'wb+') as info :
+        print f.filename
+        for chunk in f.chunks():
+            info.write(chunk)
+    return f
+
+

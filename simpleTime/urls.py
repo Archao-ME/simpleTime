@@ -5,6 +5,7 @@ from entry.views import person
 from entry.views import article
 from entry.views import login
 from entry.views import logoutView
+from entry.views import upload
 urlpatterns = [
     # Examples:
     # url(r'^$', 'simpleTime.views.home', name='home'),
@@ -16,4 +17,5 @@ urlpatterns = [
     url('^entry/(\d{1,6})',article),
     url('^entry/login/',login),
     url('^entry/logout/$',logoutView),
+    url('^entry/upload/$',upload),
 ]

@@ -1,6 +1,6 @@
 from pagedown.widgets import AdminPagedownWidget
 from django import forms
-from models import Article
+from models import Article,UploadFile
 from pagedown.widgets import PagedownWidget
 
 class ArticleForm(forms.ModelForm):
@@ -68,4 +68,16 @@ class LoginForm(forms.Form):
         cleaned_data = super(LoginForm, self).clean()
 
 
+class UploadFileForm(forms.ModelForm):
+    filename = forms.CharField(
+        widget=forms.TextInput(
+                attrs={
+                    'class':'form-control',
+                }
+            ),
+        )
+    fileContent = forms.FileField()
+    class Meta:
+        model = Article
+        fields = '__all__'
 

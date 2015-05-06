@@ -19,7 +19,10 @@
           
 
         <div class="form-markdown"> 
+          <div class="form-header">
+          <h2>Title:</h2>
           {{ articleForm.title}}
+          </div>
           {{ articleForm.content_markdown }}
           
         </div>
@@ -56,6 +59,64 @@
   <script >
   $(document).ready(function() {
     $("#id_content_markdown").autoGrow();
+    if ($('#wmd-input').length > 0) {
+                var converter = new Markdown.Converter();
+                var help = function () { window.open('http://stackoverflow.com/editing-help'); }
+                var editor = new Markdown.Editor(converter, null, { handler: help });
+                var $dialog = $('#insertImageDialog').dialog({ 
+                    autoOpen: false,
+                    closeOnEscape: false,
+                    open: function(event, ui) { $(".ui-dialog-titlebar-close").hide(); }
+                });
+                var $loader = $('span.loading-small', $dialog);
+                var $url = $('input[type=text]', $dialog);
+                var $file = $('input[type=file]', $dialog);
+                editor.hooks.set('insertImageDialog', function(callback) {
+                    // dialog functions
+                    var dialogInsertClick = function() {                                      
+                        callback($url.val().length > 0 ? $url.val() : null);
+                        dialogClose();
+                    };
+                    var dialogCancelClick = function() {
+                        dialogClose();
+                        callback(null);
+                    };
+                    var dialogClose = function() {
+                        // clean up inputs
+                        $url.val('');
+                        $file.val('');
+                        $dialog.dialog('close');
+                    };
+                    // set up dialog button handlers
+                    $dialog.dialog( 'option', 'buttons', { 
+                        'Insert': dialogInsertClick, 
+                        'Cancel': dialogCancelClick 
+                    });
+                    var uploadStart = function() {
+                        $loader.show();
+                    };
+                    var uploadComplete = function(response) {
+                        $loader.hide();
+                        if (response.success) {
+                            callback(response.imagePath);
+                            dialogClose();
+                        } else {
+                            alert("There was an error upload your file.  The server says: " + response.message);
+                            $file.val('');
+                        }
+                    };
+                    // upload
+                    $file.unbind('change').ajaxfileupload({
+                        action: $file.attr('data-action'),
+                        onStart: uploadStart,
+                        onComplete: uploadComplete
+                    });
+                    // open the dialog
+                    $dialog.dialog('open');
+                    return true; // tell the editor that we'll take care of getting the image url
+                });
+                editor.run();
+            }
   });
 </script>
 {% endblock %}

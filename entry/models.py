@@ -20,3 +20,12 @@ class Article(models.Model):
     def __unicode__(self):
 
         return "%s" % (self.title,) 
+
+UPLOAD_TO='./upload/%Y%m/%d'
+
+class UploadFile(models.Model):
+    name=models.CharField(max_length=50)
+    uploadfile=models.FileField(upload_to='./upload/')
+    
+    def __unicode__(self):
+        return "%s" % (self.name)

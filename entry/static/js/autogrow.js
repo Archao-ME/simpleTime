@@ -35,8 +35,8 @@ jQuery.fn.autoGrow = function() {
 				'.<br/>.'
 			;
 
-			if (jQuery(textarea).height() != jQuery(mirror).height())
-				jQuery(textarea).height(jQuery(mirror).height());
+			//if (jQuery(textarea).height() != jQuery(mirror).height())
+			//	jQuery(textarea).height(jQuery(mirror).height());
 		}
 
 		var growTextarea = function () {
@@ -57,8 +57,9 @@ jQuery.fn.autoGrow = function() {
 		mirror.style.lineHeight = jQuery(this).css('line-height');
 
 		// Style the textarea
-		this.style.overflow = "hidden";
-		this.style.minHeight = this.rows+"em";
+		// You'd better  set the Style in the css than in here
+		//this.style.overflow = "hidden";
+		//this.style.minHeight = this.rows+"em";
 
 		// Bind the textarea's event
 		this.onkeyup = growTextarea;

@@ -1,6 +1,7 @@
 .write{
 	width:100%;
 }
+
 .article{
 	width: 100%;
 }
@@ -22,6 +23,8 @@
 	width: 50%;
 	background-color: Gainsboro;
 	border: 1px solid DarkGray;
+	min-height: 70%;
+
 }
 
 .wmd-preview 
