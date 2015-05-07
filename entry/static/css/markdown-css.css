@@ -4,11 +4,16 @@
 
 .article{
 	width: 100%;
+	margin-bottom: 0px;
 }
+.markdown-body textarea{
+	border:0px;
+}
+
 
 .wmd-panel
 {
-	min-width: 500px;
+	
 }
 
 .wmd-button-bar 
@@ -21,18 +26,40 @@
 { 
 	float: left;
 	width: 50%;
-	background-color: Gainsboro;
-	border: 1px solid DarkGray;
-	min-height: 70%;
+	padding: 10px;
+	min-height: 80%;
 
 }
-
 .wmd-preview 
 { 
+	padding: 10px;
+	overflow:auto;
+	overflow-x:hidden;
+	height:80%;
 	width: 50%;
 	float: left;
-	background-color: #c0e0ff; 
+	background-color: #F6F6F6; 
+
 }
+
+@media(max-width: 768px){
+	.wmd-input { 
+		float: left;
+		width: 100%;
+		min-height: 80%
+
+	}
+	.wmd-preview { 
+	overflow:auto;
+	overflow-x:hidden;
+	height:80%;
+	width: 100%;
+	float: left;
+	background-color: #F6F6F6; 
+	}
+}
+
+
 
 .wmd-button-row 
 {

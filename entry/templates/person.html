@@ -19,10 +19,7 @@
           
 
         <div class="form-markdown"> 
-          <div class="form-header">
-          <h2>Title:</h2>
-          {{ articleForm.title}}
-          </div>
+
           {{ articleForm.content_markdown }}
           
         </div>
@@ -54,9 +51,16 @@
   </div>
 {%endif%}
 {% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+
 {% block js_block %}
   <script type="text/javascript" src="/static/js/autogrow.js"></script>
+
   <script >
+
   $(document).ready(function() {
     $("#id_content_markdown").autoGrow();
     if ($('#wmd-input').length > 0) {
