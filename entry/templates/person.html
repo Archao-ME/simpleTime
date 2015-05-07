@@ -58,8 +58,8 @@
 
 {% block js_block %}
   <script type="text/javascript" src="/static/js/autogrow.js"></script>
-
   <script >
+
 
   $(document).ready(function() {
     $("#id_content_markdown").autoGrow();
@@ -121,6 +121,19 @@
                 });
                 editor.run();
             }
+    x=0;
+
+    $("#id_content_markdown").scroll(function(){
+        scrollMD = document.getElementById('id_content_markdown').scrollHeight;
+        scrollPD = document.getElementById('id_content_markdown_wmd_preview').scrollHeight;
+        scrollTo = $(this).scrollTop();
+        scrollPo = scrollTo * scrollPD / scrollMD;
+
+        $("#id_content_markdown_wmd_preview").scrollTop(
+          scrollPo
+        );
+        });
+
   });
 </script>
 {% endblock %}
