@@ -13,7 +13,8 @@ from django.core.context_processors import csrf
 import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-
+from uploadToQiniu import uploadToQiniu
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -33,14 +34,17 @@ def person(request):
             return HttpResponseRedirect('/entry/login')
         else :
             articleForm = forms.ArticleFormPerson()
+
             return render_to_response('person.html',{'state':"GET",'articleForm':articleForm},context_instance = RequestContext(request))
             
     else :
         form = forms.ArticleFormPerson(request.POST)
         if form.is_valid:
             title = request.POST.get('title')
-        
             content_markdown = request.POST.get('content_markdown')
+            if title == '' :
+                title = content_markdown[:10]
+            
             content_markup = content_markdown
             
             articleModel = Article(title=title,content_markdown=content_markdown,content_markup=content_markup)
@@ -74,21 +78,23 @@ def logoutView(request):
         return HttpResponseRedirect('/entry/')
     
     # Redirect to a success page.
-    
+
+@csrf_exempt
 def upload(request):
     uploadState = ''
     if request.method == 'POST':
         fileForm = forms.UploadFileForm(request.POST,request.FILES)
         if fileForm.is_valid():
             u = UploadFile()
-            u.filename = 'title'
+            #u.filename = 'title'
             u.fileContent = request.FILES['fileContent']
-            #u.filename = request.POST['filename']
+            u.filename = request.POST['filename']
+            ret = uploadToQiniu(u.fileContent,u.filename)
             
-            u.save()
+            #u.save()
             # handle_uploaded_file(request.FILES['fileContent'])
             uploadState = 'ok'
-            return HttpResponseRedirect('/entry/')
+            return HttpResponse(ret['key'])
         else :
             uploadState = 'error'
             return render_to_response('upload.html',{'uploadState':uploadState,'fileForm':fileForm},context_instance=RequestContext(request))

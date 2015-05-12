@@ -28,6 +28,7 @@
 	width: 50%;
 	padding: 10px;
 	min-height: 80%;
+	background-color: #F6F6F6; 
 
 }
 .wmd-preview 
@@ -38,7 +39,7 @@
 	height:80%;
 	width: 50%;
 	float: left;
-	background-color: #F6F6F6; 
+	
 
 }
 

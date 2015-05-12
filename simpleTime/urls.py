@@ -18,4 +18,5 @@ urlpatterns = [
     url('^entry/login/',login),
     url('^entry/logout/$',logoutView),
     url('^entry/upload/$',upload),
+    
 ]

@@ -20,9 +20,7 @@
       <div class="navbar-header"> 
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+ 
         </button>
         <a class="navbar-brand" href="http://127.0.0.1:8000/entry">
           LOGO
@@ -30,13 +28,17 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
+          {% block navbar_li %}
           <li><a href="#">{{user.email}}</a></li>
           <li><a href="http://127.0.0.1:8000/entry/write">Write</a></li>
+
           {% if user.is_authenticated %}
             <li><a href="http://127.0.0.1:8000/entry/logout">Log Out</a></li>
           {% else %}
             <li><a href="http://127.0.0.1:8000/entry/login">Log In</a></li>
           {% endif %}
+          
+          {% endblock %}
         </ul>
         <form class="navbar-form navbar-right">
 

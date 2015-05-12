@@ -1,9 +1,22 @@
 {% extends "base.html" %}
 {% block extend_css %}
     <link rel="stylesheet" href="/static/css/entry.css" >
-    <link rel="stylesheet" href="/static/css/flexText.css">
+
     {{ articleForm.media }}
 {% endblock %}
+
+{% block navbar_li %}
+          <li id="upload-url"><a> </a></li>
+          <li><a href="#">{{user.email}}</a></li>
+
+          {% if user.is_authenticated %}
+            <li><a href="http://127.0.0.1:8000/entry/logout">Log Out</a></li>
+          {% else %}
+            <li><a href="http://127.0.0.1:8000/entry/login">Log In</a></li>
+          {% endif %}
+          
+{% endblock %}
+
 {% block content_body %}
 {% if user.is_authenticated %}
 
@@ -20,8 +33,8 @@
 
         <div class="form-markdown"> 
           <div class="form-header">
-           <h2>Title:</h2>
-             {{ articleForm.title}}
+           <h2>{{ articleForm.title}}</h2>
+             
            </div>
           {{ articleForm.content_markdown }}
           
@@ -61,6 +74,9 @@
 
 {% block js_block %}
   <script type="text/javascript" src="/static/js/autogrow.js"></script>
+  
+  <script type="text/javascript" src="/static/js/dropbox.js"></script>
+
   <script >
 
 
@@ -138,6 +154,30 @@
         });
 
 
+    dropbox('navbar','http://127.0.0.1:8000/entry/upload/');
+
   });
+  $('html').ajaxSend(function(event, xhr, settings) {  
+        function getCookie(name) {  
+            var cookieValue = null;  
+            if (document.cookie && document.cookie != '') {  
+                var cookies = document.cookie.split(';');  
+                for (var i = 0; i < cookies.length; i++) {  
+                    var cookie = jQuery.trim(cookies[i]);  
+                    // Does this cookie string begin with the name we want?  
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {  
+                       cookieValue = decodeURIComponent(cookie.substring(name.length + 1));  
+                       break;  
+                   }  
+               }  
+           }  
+           return cookieValue;  
+       }  
+       if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {  
+           // Only send the token to relative URLs i.e. locally.  
+           xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));  
+       }  
+   });  
+
 </script>
 {% endblock %}

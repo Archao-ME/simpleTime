@@ -16,7 +16,9 @@ class ArticleFormPerson(forms.ModelForm):
         label = u'Title',
         widget=forms.TextInput(
             attrs={
+                'placeholder':u"Title",
                 'class':'form-control',
+
             }
         ))
 
