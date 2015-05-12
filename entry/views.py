@@ -85,11 +85,13 @@ def upload(request):
     if request.method == 'POST':
         fileForm = forms.UploadFileForm(request.POST,request.FILES)
         if fileForm.is_valid():
-            u = UploadFile()
+            #u = UploadFile()
             #u.filename = 'title'
-            u.fileContent = request.FILES['fileContent']
-            u.filename = request.POST['filename']
-            ret = uploadToQiniu(u.fileContent,u.filename)
+            #u.fileContent = request.FILES['fileContent']
+            #u.filename = request.POST['filename']
+            fileContent = request.FILES['fileContent']
+            filename = request.POST['filename']
+            ret = uploadToQiniu(fileContent,filename)
             
             #u.save()
             # handle_uploaded_file(request.FILES['fileContent'])
