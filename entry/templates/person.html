@@ -10,9 +10,9 @@
           <li><a href="#">{{user.email}}</a></li>
 
           {% if user.is_authenticated %}
-            <li><a href="http://127.0.0.1:8000/entry/logout">Log Out</a></li>
+            <li><a href="/entry/logout">Log Out</a></li>
           {% else %}
-            <li><a href="http://127.0.0.1:8000/entry/login">Log In</a></li>
+            <li><a href="entry/login">Log In</a></li>
           {% endif %}
           
 {% endblock %}
@@ -59,7 +59,7 @@
       <article class="markdown-body">
 
           <h2>密码或账号错误</h2>
-          <a href="http://127.0.0.1:8000/entry/login">返回</a>
+          <a href="/entry/login">返回</a>
    
 
       </article>

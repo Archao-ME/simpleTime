@@ -22,7 +22,7 @@
           <span class="sr-only">Toggle navigation</span>
  
         </button>
-        <a class="navbar-brand" href="http://127.0.0.1:8000/entry">
+        <a class="navbar-brand" href="/entry">
           LOGO
         </a>
       </div>
@@ -30,12 +30,12 @@
         <ul class="nav navbar-nav navbar-right">
           {% block navbar_li %}
           <li><a href="#">{{user.email}}</a></li>
-          <li><a href="http://127.0.0.1:8000/entry/write">Write</a></li>
+          <li><a href="/entry/write">Write</a></li>
 
           {% if user.is_authenticated %}
-            <li><a href="http://127.0.0.1:8000/entry/logout">Log Out</a></li>
+            <li><a href="/entry/logout">Log Out</a></li>
           {% else %}
-            <li><a href="http://127.0.0.1:8000/entry/login">Log In</a></li>
+            <li><a href="/entry/login">Log In</a></li>
           {% endif %}
           
           {% endblock %}
