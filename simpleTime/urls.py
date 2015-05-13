@@ -13,6 +13,7 @@ urlpatterns = [
     
     url(r'^admin/', include(admin.site.urls)),
     url('^entry/$',entry),
+    url('^/$',entry),
     url('^entry/write/$',person),
     url('^entry/(\d{1,6})',article),
     url('^entry/login/',login),
