@@ -50,9 +50,13 @@ coverage.xml
 
 # Django stuff:
 *.log
-
+*.pyc
 # Sphinx documentation
 docs/_build/
 
 # PyBuilder
 target/
+
+#setting.py
+/simpleTime/setting.py
+
