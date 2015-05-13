@@ -1,11 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from entry.views import entry
-from entry.views import person
-from entry.views import article
-from entry.views import login
-from entry.views import logoutView
-from entry.views import upload
+from entry.views import entry,upload,person,article,login,logoutView,upload
+from entry.views import articleList
 urlpatterns = [
     # Examples:
     # url(r'^$', 'simpleTime.views.home', name='home'),
@@ -19,5 +15,6 @@ urlpatterns = [
     url('^entry/login/',login),
     url('^entry/logout/$',logoutView),
     url('^entry/upload/$',upload),
+    url('^entry/list/$',articleList),
     
 ]

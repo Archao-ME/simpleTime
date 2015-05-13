@@ -51,6 +51,19 @@ def person(request):
             articleModel.save()
         return HttpResponseRedirect('/entry/')
 
+def articleList(request):
+    if request.method == 'GET':
+        if not request.user.is_authenticated():
+            return HttpResponseRedirect('/entry/login')
+        else :
+            articleList = Article.objects.order_by('-id')
+            return render_to_response('articleList.html',{'articleList':articleList},context_instance = RequestContext(request))
+    else:
+        return HttpResponseRedirect('/entry/')
+
+
+
+
 def login(request):
     if request.method == 'GET':
         form = forms.LoginForm()
