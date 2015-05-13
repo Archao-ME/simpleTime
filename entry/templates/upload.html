@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block extend_css %}
+    <link rel="stylesheet" href="/static/css/entry.css" >
+    <link rel="stylesheet" href="/static/css/flexText.css">
+    {{ articleForm.media }}
+{% endblock %}
+{% block content_body %}
+{% if user.is_authenticated %}
+
+  <div class="write container">
+    
+    <div class="article"> 
+      <div class="article_header">
+        <h1>{{uploadState}}</h1>
+      </div>
+
+      <article class="markdown-body">
+
+        <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+          
+
+        <div class="form-markdown"> 
+          <div class="form-header">
+          <h2>filename:</h2>
+          {{ fileForm.filename}}
+          </div>
+          <div class="file-box">
+            {{ fileForm.fileContent }}
+          </div>
+        </div>
+        <div class="form-button">
+          <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button> 
+        </div>
+        </form>
+
+      </article>
+      </div>
+  </div>
+
+{%else%}
+  <div class="entry_lists container">
+    
+    <div class="article">
+      <div class="article_header">
+          <h1>{{ state }}<small class="text-right">{{article.author}}</small></h1>
+      </div>
+
+      <article class="markdown-body">
+
+          <h2>密码或账号错误</h2>
+          <a href="http://127.0.0.1:8000/entry/login">返回</a>
+   
+
+      </article>
+      </div>
+  </div>
+{%endif%}
+{% endblock %}
