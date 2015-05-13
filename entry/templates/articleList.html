@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+{% block extend_css %}
+    <link rel="stylesheet" href="/static/css/article-list.css" >
+
+{% endblock %}
+{% block content_body %}
+
+  <div class="entry_lists container">
+    
+
+    {% for article in articleList %}
+    <div class="article">
+      <div class="article_header">
+
+        <div class="article_text">        
+          <a href="http://{{ localURL }}/entry/{{article.id}}"> - {{ article.title}}
+          </a>
+        </div>
+        <div class="del_button"><span class="glyphicon glyphicon-remove"></span></div>
+
+        <div id="del_modal" class="modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         ?
+        </div>
+      </div>
+      </div>
+      {% endfor %}
+
+
+{% endblock %}
+{% block js_block %}
+
+<script src="http://cdn.bootcss.com/bootstrap-modal/2.2.5/js/bootstrap-modal.js"></script>
+  <script type="text/javascript">
+
+
+  </script>
+
+{% endblock %}
