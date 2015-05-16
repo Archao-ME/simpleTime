@@ -3,7 +3,9 @@
 	width:700px;
 	padding-bottom: 70px;
 }
-
+img{
+	width:100%;
+}
 .article_header{
 	width: 100%;
 	margin-bottom: 20px;
