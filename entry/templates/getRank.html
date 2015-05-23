@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+{% block extend_css %}
+    <link rel="stylesheet" href="/static/css/entry.css" >
+
+{% endblock %}
+{% block content_body %}
+
+  <div class="entry_lists container">
+    
+
+    {% for song in songList %}
+    <div class="rank">
+          
+          <a href="http://music.163.com/#/song?id={{song.song_ID}}"> {{ song.song_Name}}
+          </a><small class="text-right">{{song.score}}</small>
+      </div>
+      {% endfor %}
+
+    
+  </div>
+
+{% endblock %}
