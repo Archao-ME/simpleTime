@@ -1,0 +1,16 @@
+
+.rank-l{
+	padding-right: 4px;
+	text-align: right;
+	width:40%; 
+	float: left;	
+}
+.rank-r{
+	width: 60%;
+	float: right;
+	
+}
+.rank-r-bg{
+	color:#61B4FC;
+	background-color: #C8E2F9;
+}
