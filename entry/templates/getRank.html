@@ -3,12 +3,21 @@
 {% block extend_css %}
     <link rel="stylesheet" href="/static/css/entry.css" >
     <link rel="stylesheet" href="/static/css/rank.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-combined.min.css">
 {% endblock %}
 {% block content_body %}
 
   <div class="entry_lists container">
     
+    <div class="date-select">
+      <div class="input-append date" id="datetimepicker" data-date="12-02-2012" >
+        <input class="span2" size="16" type="text" value="12-02-2012" >
+        <span ><h1 class="add-on span2">Time</i></span>
+      </div>            
+    </div>
 
+    <div class="rankList">
     {% for song in songList %}
     <div class="rank">
           <div class="rank-l">
@@ -18,15 +27,46 @@
           <div class="rank-r" ><div class="rank-r-bg" style="width:{{song.score}}%">{{song.score}}</div></div>
       </div>
       {% endfor %}
+    </div>
 
     
   </div>
 
 {% endblock %}
 {% block js_block %}
-    <style >
+    <script type="text/javascript" src="/static/js/jquery.pin.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript">
     $(document).ready(function(){
+      $(".date-select").pin({
+        containerSelector:".container"
+      });
 
-      })
-    </style>
+      $("#datetimepicker").datetimepicker({
+        format: 'MM/dd/yyyy',
+        language: 'en',  
+        pickDate: true
+
+      }).on('changeDate',function(ev){
+        var date = new Date(ev.date.valueOf());
+        Y = date.getFullYear();
+        date.getMonth() < 10 ? M ='0'+(date.getMonth()+1): M =date.getMonth()+1;
+        D = date.getDate()-1;
+        date = Y+''+M+''+D ;
+        $(".add-on").html(date);
+        $.get('http://127.0.0.1:8000/getRank/api/week/{{user_ID}}/'+date,function(data){
+            $(".rankList").html(data);
+          });
+   
+
+      });
+
+
+        
+
+
+
+    }); 
+
+    </script>
 {% endblock %}

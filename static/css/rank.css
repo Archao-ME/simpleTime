@@ -1,4 +1,6 @@
-
+.rank{
+	height: 20px;
+}
 .rank-l{
 	padding-right: 4px;
 	text-align: right;
@@ -11,6 +13,15 @@
 	
 }
 .rank-r-bg{
+	height: 18px;
 	color:#61B4FC;
 	background-color: #C8E2F9;
+}
+.date-select{
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100px;
+
+
 }
