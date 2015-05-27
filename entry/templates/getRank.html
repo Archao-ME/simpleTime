@@ -12,9 +12,10 @@
     
     <div class="date-select">
       <div class="input-append date" id="datetimepicker" data-date="12-02-2012" >
-        <input class="span2" size="16" type="text" value="12-02-2012" >
-        <span ><h1 class="add-on span2">Time</i></span>
-      </div>            
+        <input class="span2 hidden" size="16" type="text" value="12-02-2012">
+        <h1 class="add-on">Time<span class="glyphicon glyphicon-calendar"></span></h1>
+      </div>
+      
     </div>
 
     <div class="rankList">
@@ -51,9 +52,9 @@
         var date = new Date(ev.date.valueOf());
         Y = date.getFullYear();
         date.getMonth() < 10 ? M ='0'+(date.getMonth()+1): M =date.getMonth()+1;
-        D = date.getDate()-1;
+        date.getDate()-1 <10 ? D = '0'+(date.getDate()-1): D = date.getDate()-1;
         date = Y+''+M+''+D ;
-        $(".add-on").html(date);
+        $(".add-on").html(date+'<span class="glyphicon glyphicon-calendar"></span>');
         $.get('http://127.0.0.1:8000/getRank/api/week/{{user_ID}}/'+date,function(data){
             $(".rankList").html(data);
           });
