@@ -7,6 +7,7 @@
 	width:40%; 
 	float: left;	
 }
+
 .rank-r{
 	width: 60%;
 	float: right;
@@ -22,6 +23,6 @@
 	margin-left: auto;
 	margin-right: auto;
 	width: 100px;
-
-
+	float: left;
+	position: fixed;
 }
