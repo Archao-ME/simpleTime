@@ -1,0 +1,9 @@
+    {% for song in songList %}
+    <div class="rank">
+          <div class="rank-l">
+          <a href="http://music.163.com/#/song?id={{song.song_ID}}"> {{ song.song_Name}}
+          </a><small class="text-right"></small>
+          </div>
+          <div class="rank-r" ><div class="rank-r-bg" style="width:{{song.score}}%">{{song.score}}</div></div>
+      </div>
+      {% endfor %}
