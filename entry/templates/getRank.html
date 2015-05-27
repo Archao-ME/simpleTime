@@ -55,7 +55,7 @@
         date.getDate()-1 <10 ? D = '0'+(date.getDate()-1): D = date.getDate()-1;
         date = Y+''+M+''+D ;
         $(".add-on").html(date+'<span class="glyphicon glyphicon-calendar"></span>');
-        $.get('http://127.0.0.1:8000/getRank/api/week/{{user_ID}}/'+date,function(data){
+        $.get('http://'+location.hostname+':'+location.port+'/getRank/api/week/{{user_ID}}/'+date,function(data){
             $(".rankList").html(data);
           });
    
