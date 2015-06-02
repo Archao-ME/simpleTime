@@ -4,6 +4,7 @@ from entry.views import entry,upload,person,article,login,logoutView,upload
 from entry.views import articleList
 from getRank.views import getRank
 from getRank.views import getRankDate
+from getRank.views import loopID
 urlpatterns = [
     # Examples:
     # url(r'^$', 'simpleTime.views.home', name='home'),
@@ -20,4 +21,5 @@ urlpatterns = [
     url('^entry/list/$',articleList),
     url('^getRank/(\d{1,10})',getRank),
     url('^getRank/api/week/(\d{1,10})/(\d{8})',getRankDate),
+    url('^getRank/api/week/loopID',loopID),
 ]

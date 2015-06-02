@@ -16,13 +16,15 @@ def getRank(request,ID):
     id = ID
     songList = SongList.objects.filter(user_ID = id,date=today)
     if not songList :
-        mysong = get163Rank.Get163Rank(ID)
-        mysong.GetHtml()
-        mysong.WeekDic()
-        mysong.SaveWeek()
+        mysong = get163Rank.Get163Rank()
+        mysong.SaveWeek(ID)
         songList = SongList.objects.filter(user_ID = id,date=today)
 
     return render_to_response('getRank.html',{'songList':songList,'user_ID':id},context_instance = RequestContext(request))
+def loopID(request):
+    songRank = get163Rank.Get163Rank()
+    songRank.LoopID()
+    return HttpResponse("LoopID OK!")
 
 def getRankDate(request,ID,date):
     ISOFORMAT='%Y%m%d'
@@ -38,3 +40,5 @@ def getRankDate(request,ID,date):
         songJson = json.dumps(songDic)
         print songJson
         return render_to_response('getRankAPI.html',{'songList':songList},context_instance = RequestContext(request))
+
+

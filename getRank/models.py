@@ -12,3 +12,8 @@ class SongList(models.Model):
     def __unicode__(self):
         return "%s" % (self.song_ID)
 
+class RankID(models.Model):
+    rank_ID = models.IntegerField()
+    date = models.CharField(max_length=12)
+    def __unicode__(self):
+        return "%s" % (self.rank_ID)
